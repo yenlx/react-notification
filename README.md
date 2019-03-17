@@ -16,7 +16,7 @@ Cần đăng ký 1 app trên firebase để có 1 server gửi thông báo. <br/
 <pre>
 URL     :       https://fcm.googleapis.com/fcm/send METHOD : POST
 Header  :       Content-Type:application/json
-                Authorization:key=<FireBase Server key>
+                Authorization:key="FireBase_Server_key"
 Body    :       {
                     "notification": {
                         "title": "First Message",
@@ -24,6 +24,6 @@ Body    :       {
                         "click_action": "https://facebook.com",
                         "icon": "https://pngimage.net/wp-content/uploads/2018/06/logo-face-e-instagram-png-4.png"
                     },
-                    "to":<Token device lấy được>
+                    "to": "Token device lấy được"
                 }      
 </pre>
