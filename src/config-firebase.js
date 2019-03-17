@@ -1,12 +1,12 @@
 import firebase from 'firebase';
 
 export const registerFirebase = () => {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('/sw.js') // đăng ký 1 service worker trước khi muốn có được token device
         .then(function (registration) {
             var config = {
-                messagingSenderId: "288192095109"
+                messagingSenderId: "288192095109" //message serder id từ server
             };
-            firebase.initializeApp(config);
+            firebase.initializeApp(config); //setup app 
             const messaging = firebase.messaging();
             messaging.useServiceWorker(registration);
            
@@ -34,7 +34,7 @@ export const registerFirebase = () => {
                     localStorage.setItem('messageNotification', JSON.stringify(message));
                 }
             });
-            messaging.onTokenRefresh(function () {
+            messaging.onTokenRefresh(function () { //vì token có thể thay đổi nên cần đăng ký lắng nghe refresh token để luôn có 1 token mới nhất đến server
                 messaging.getToken().then(function (refreshedToken) {
                     console.log('Token refreshed : ' + refreshedToken);
                 }).catch(function (err) {
