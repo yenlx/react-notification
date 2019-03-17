@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { timingSafeEqual } from 'crypto';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    if (localStorage.getItem('messageNotification') === null) {
+      let data = [];
+      localStorage.setItem('messageNotification', JSON.stringify(data));
+      }
+    this.state  = ({
+      listMessage : JSON.parse(localStorage.getItem('messageNotification'))
+    });
+  }
+  registerListenLocal=()=>{
+      this.setState({
+        listMessage : JSON.parse(localStorage.getItem('messageNotification'))
+      })
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div> 
+          Notification
+          <button onClick={this.registerListenLocal}>Reload List</button>
+          {this.state.listMessage.map((e,i)=>{
+              return (<div className='container' key={i}>
+                    <img className='image-firebase' src={e.icon}/>
+                    <div className='container-firebase'>
+                      <p className = 'title-firebase'>{e.title}</p>
+                      <p className = 'body-firebase'>{e.body}</p>
+                    </div>
+              </div> )
+          })
+          }
       </div>
     );
   }

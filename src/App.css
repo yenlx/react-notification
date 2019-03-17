@@ -27,7 +27,22 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.container {
+  width: 100%;
+  border: 1px solid #282c34;
+  padding :10px
+}
+.image-firebase{
+  float: left;
+  height: 50px;
+  width: 50px;
+}
+.container-firebase{
+  width: calc(100%-50px);
 }
